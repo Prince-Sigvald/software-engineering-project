@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "software-engineering-project-yan-tim"
+version = "0.1.0"
+description = ""
+authors = ["Yan de Hahn <jan.gridling@hotmail.com>"]
+readme = "README.md"
+packages = [{include = "software_engineering_project_yan_tim", from = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
