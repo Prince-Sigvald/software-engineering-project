@@ -11,7 +11,7 @@ class data_logger:
         self.date = now.strftime("%Y-%m-%d %H:%M:%S")
 
     def csv_save(self, file_path):
-        # Überprüfe, ob die Datei existiert. Falls nicht, lege sie an und schreibe die Überschriften.
+        # Check if the file is existing, if not build it and make the titles.
         try:
             with open(file_path, mode='x', newline='') as csv_file:
                 csv_writer = csv.writer(csv_file, delimiter=',')
@@ -19,7 +19,7 @@ class data_logger:
         except FileExistsError:
             pass
 
-        # Füge die aktuellen Daten hinzu, jedes Attribut in einer eigenen Spalte
+        # Add the current data, with each attribute in its own column
         with open(file_path, mode='a', newline='') as csv_file:
             csv_writer = csv.writer(csv_file, delimiter=',')
             csv_writer.writerow([self.date, self.shape, self.color])
