@@ -26,4 +26,4 @@ class ImageVisualizer:
 
     def show_frame(self):
         cv2.imshow('Live Shape and Color Detection', self.image_processor.image)
-        cv2.waitKey(0)
+        cv2.waitKey(40)
