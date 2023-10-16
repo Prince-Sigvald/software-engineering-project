@@ -1,6 +1,7 @@
 from image_processor import ImageProcessor
 from image_visualizer import ImageVisualizer
 from camera import Camera
+from data_logger import data_logger
 import cv2
 
 class Integration:
@@ -44,3 +45,10 @@ class Integration:
         image_visualizer.draw_frame()
         image_visualizer.draw_label()
         image_visualizer.show_frame()
+
+        if 1:
+            for shape, color in image_processor.shapes_and_colors:
+                data=data_logger(shape, color)
+                data.timestamp()
+                data.csv_save("C:/AA_Studium/Unterlagen/Semester_5/Software_Engineering/software-engineering-project-yan-tim/output/data_log.csv")
+        print("Finished")
