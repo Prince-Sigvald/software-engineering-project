@@ -27,14 +27,3 @@ class Camera:
         else:
             print("Fehler beim Lesen des Bildes von der Kamera.")
             return None
-
-# Exampe usage:
-my_camera = Camera(camera_index=1)
-my_camera.camera_open()
-
-frame = my_camera.get_frame()
-cv2.imshow("frame", frame)
-cv2.waitKey(0)
-
-
-my_camera.camera_close()
