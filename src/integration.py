@@ -4,6 +4,7 @@ from camera import Camera
 from data_logger import data_logger
 import cv2
 import numpy as np
+import os
 
 class Integration:
     def run():
@@ -11,8 +12,12 @@ class Integration:
         my_camera = Camera(camera_index=1)
         my_camera.camera_open()
         last_frame = cv2.cvtColor(my_camera.get_frame(), cv2.COLOR_BGR2GRAY)
+
+        # Output
+        current_directory = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        output_folder = os.path.join(current_directory, 'output')
+
         while True:
-            #frame = cv2.imread('C:/Users/Tim/Desktop/Weihnachten/sample_image.JPG', cv2.IMREAD_COLOR)
             frame = my_camera.get_frame()
 
             # Call Image Processor
@@ -40,6 +45,7 @@ class Integration:
                     if (shape != None and color != None):
                         data=data_logger(shape, color)
                         data.timestamp()
-                        data.csv_save("C:/Users/Tim/Desktop/data_log.csv")
+                        output_path = os.path.join(output_folder, "data_log.csv")
+                        data.csv_save(output_path)
             
             last_frame = image_processor.gray_image
