@@ -1,4 +1,5 @@
 from image_processor import ImageProcessor
+from image_visualizer import ImageVisualizer
 from camera import Camera
 import cv2
 
@@ -36,3 +37,10 @@ class Integration:
         cv2.imshow("edges",image_processor.edges)
 
         cv2.waitKey(0)
+
+        # Call Visualizer
+        image_visualizer = ImageVisualizer(image_processor)
+
+        image_visualizer.draw_frame()
+        image_visualizer.draw_label()
+        image_visualizer.show_frame()
