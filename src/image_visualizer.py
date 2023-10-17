@@ -25,5 +25,5 @@ class ImageVisualizer:
                 cv2.putText(self.image_processor.image, f"{color} {shape}", (x, y), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 2)
 
     def show_frame(self):
-        cv2.imshow('Live Shape and Color Detection', self.image_processor.image)
-        cv2.waitKey(0)
+        cv2.imshow('Live Shape and Color Detection / press "q" to quit', self.image_processor.image)
+        cv2.waitKey(40)

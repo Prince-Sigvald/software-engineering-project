@@ -9,21 +9,21 @@ class Camera:
             self.cap.open()
 
         if self.cap.isOpened():
-            print("Kamera wurde geöffnet.")
+            print("Camera open.")
         else:
-            print("Fehler beim Öffnen der Kamera.")
+            print("Failure: Camera isn't working.")
 
     def camera_close(self):
         if self.cap.isOpened():
             self.cap.release()
-            print("Kamera wurde geschlossen.")
+            print("Camera closed.")
         else:
-            print("Die Kamera ist nicht geöffnet.")
+            print("Camera isn't running.")
 
     def get_frame(self):
         ret, frame = self.cap.read()
         if ret:
             return frame
         else:
-            print("Fehler beim Lesen des Bildes von der Kamera.")
+            print("Failure: Reading image from camera.")
             return None

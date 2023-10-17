@@ -37,7 +37,7 @@ class ImageProcessor:
                 return "Rectangle"
         elif len(approx) == 5:
             return "Pentagon"
-        else:
+        elif len(approx) >= 8:
             return "Circle"
 
     def color_detection(self):
