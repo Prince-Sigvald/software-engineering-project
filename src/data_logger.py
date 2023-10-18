@@ -2,14 +2,25 @@ from datetime import datetime
 import csv
 
 class data_logger:
+    """
+    needs two strings as input
+    creates two string members
+    """
     def __init__(self, shape, color):
         self.shape = shape
         self.color = color
 
+    """
+    create a string member wich contains information about current date
+    """
     def timestamp(self):
         now = datetime.now()
         self.date = now.strftime("%Y-%m-%d %H:%M:%S")
 
+    """
+    needs file path as input
+    saves data of shape, color and date in a csv file if file exists 
+    """
     def csv_save(self, file_path):
         # Check if the file is existing, if not build it and make the titles.
         try:

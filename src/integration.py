@@ -7,6 +7,12 @@ import numpy as np
 import os
 
 class Integration:
+    """
+    needs camera index to determine which camera will be opened
+    will create an folder named "output" next to the src folder
+    which contains a csv file named "data_log.csv"
+    "data_log.csv" contains information about detected colors, shapes and timestamps
+    """
     def run(index_cam):
         # Call Camera
         my_camera = Camera(camera_index=index_cam)
