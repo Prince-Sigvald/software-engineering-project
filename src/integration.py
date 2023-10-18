@@ -9,7 +9,7 @@ import os
 class Integration:
     def run():
         # Call Camera
-        my_camera = Camera(camera_index=1)
+        my_camera = Camera(camera_index=0)
         my_camera.camera_open()
         last_frame = cv2.cvtColor(my_camera.get_frame(), cv2.COLOR_BGR2GRAY)
 
