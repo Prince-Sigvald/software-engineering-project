@@ -1,6 +1,10 @@
 import cv2
 
 class Camera:
+    """
+    needs camera index to determine which camera will be opened
+    creates camera member
+    """
     def __init__(self, camera_index=0):
         self.cap = cv2.VideoCapture(camera_index)
 
@@ -20,6 +24,9 @@ class Camera:
         else:
             print("Camera isn't running.")
 
+    """
+    returns one frame if the camera is opened
+    """
     def get_frame(self):
         ret, frame = self.cap.read()
         if ret:

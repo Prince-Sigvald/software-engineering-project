@@ -7,9 +7,15 @@ import numpy as np
 import os
 
 class Integration:
-    def run():
+    """
+    needs camera index to determine which camera will be opened
+    will create an folder named "output" next to the src folder
+    which contains a csv file named "data_log.csv"
+    "data_log.csv" contains information about detected colors, shapes and timestamps
+    """
+    def run(index_cam):
         # Call Camera
-        my_camera = Camera(camera_index=1)
+        my_camera = Camera(camera_index=index_cam)
         my_camera.camera_open()
         last_frame = cv2.cvtColor(my_camera.get_frame(), cv2.COLOR_BGR2GRAY)
 
@@ -37,15 +43,16 @@ class Integration:
 
             # Camera quit with 'q'
             if cv2.waitKey(1) & 0xFF == ord('q'):
+                my_camera.camera_close()
                 break
 
             # Data Logger
-            if np.sum(np.abs(image_processor.gray_image-last_frame)) <= 1000:
-                for shape, color in image_processor.shapes_and_colors:
-                    if (shape != None and color != None):
-                        data=data_logger(shape, color)
-                        data.timestamp()
-                        output_path = os.path.join(output_folder, "data_log.csv")
-                        data.csv_save(output_path)
+                if np.sum(np.abs(image_processor.gray_image-last_frame)) <= 1000:
+                    for shape, color in image_processor.shapes_and_colors:
+                        if (shape != None and color != None):
+                            data=data_logger(shape, color)
+                            data.timestamp()
+                            output_path = os.path.join(output_folder, "data_log.csv")
+                            data.csv_save(output_path)
             
             last_frame = image_processor.gray_image

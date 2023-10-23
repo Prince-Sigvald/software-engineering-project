@@ -12,4 +12,4 @@ from integration import Integration
 #%%
 # Mainprogram
 if __name__ == '__main__':
-    Integration.run()
+    Integration.run(0)

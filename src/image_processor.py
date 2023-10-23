@@ -2,26 +2,51 @@ import cv2
 import numpy as np
 
 class ImageProcessor:
+    """
+    needs coloured frame
+    creates one image mebmer and a list member
+    """
     def __init__(self, image):
         self.image = image
         self.shapes_and_colors = []  #List for forms and colours
 
+    """
+    needs a coloured image
+    creates new gray image member named gray_image out of coloured image
+    """
     def convert_to_grayscale(self):
         # convert pic into grey image
         self.gray_image = cv2.cvtColor(self.image, cv2.COLOR_BGR2GRAY)
 
+    """
+    needs a gray image
+    creates new binary image member named binary_image out of gray image
+    """
     def picture_binary(self):
         # convert grey image to binary image
         _, self.binary_image = cv2.threshold(self.gray_image, 200, 255, cv2.THRESH_BINARY)
 
+    """
+    needs a binary image
+    creates new edges image member named edges out of binary image
+    """
     def find_edges(self):
         # determine edges of binary image
         self.edges = cv2.Canny(self.binary_image, 100, 200)
 
+    """
+    needs a edges image
+    creates new list member named contours which contains information aubout the contours
+    out of edges image
+    """
     def find_contours(self):
         # find contours of edge picture
         self.contours, _ = cv2.findContours(self.edges, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
+    """
+    needs a contour list
+    returns a string of the name of a shape
+    """
     def shape_detection(self, contour):
         epsilon = 0.04 * cv2.arcLength(contour, True)
         approx = cv2.approxPolyDP(contour, epsilon, True)  # Determine corners
@@ -40,6 +65,10 @@ class ImageProcessor:
         elif len(approx) >= 8:
             return "Circle"
 
+    """
+    need no input if the member contour was created
+    returns a string of the name of a color
+    """
     def color_detection(self):
         # change image do hsv image.
         hsv_image = cv2.cvtColor(self.image, cv2.COLOR_BGR2HSV)
