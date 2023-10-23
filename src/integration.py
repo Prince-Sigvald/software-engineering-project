@@ -47,12 +47,12 @@ class Integration:
                 break
 
             # Data Logger
-                if np.sum(np.abs(image_processor.gray_image-last_frame)) <= 1000:
-                    for shape, color in image_processor.shapes_and_colors:
-                        if (shape != None and color != None):
-                            data=data_logger(shape, color)
-                            data.timestamp()
-                            output_path = os.path.join(output_folder, "data_log.csv")
-                            data.csv_save(output_path)
+            if np.sum(np.abs(image_processor.gray_image-last_frame)) <= 1000:
+                for shape, color in image_processor.shapes_and_colors:
+                    if (shape != None and color != None):
+                        data=data_logger(shape, color)
+                        data.timestamp()
+                        output_path = os.path.join(output_folder, "data_log.csv")
+                        data.csv_save(output_path)
             
             last_frame = image_processor.gray_image
